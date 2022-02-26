@@ -1,4 +1,4 @@
-const { balances, transactions } = require('../models');
+let { balances, transactions } = require('../models');
 
 const addTransactions = (body, cb) => {
   if (Array.isArray(body)) {

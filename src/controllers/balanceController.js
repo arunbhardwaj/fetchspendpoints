@@ -1,14 +1,14 @@
 let { balances, transactions } = require('../models')
 const { isValidTransactionBeforeTimestamp } = require('../validators/transactionValidators')
 
+// TODO: use NODE_ENV instead of optional parameters for testing
 const spendPoints = (points, timestamp=Date.now(), customTransactions) => {
-  // we should check if points are greater than total balance
-  // but I'm going to assume we have the points for simplicity
   transactions = customTransactions ?? transactions;
+  let totalBalance = getTotalBalance(transactions);
   let costs = {}
-  let totalBalance = getTotalBalance();
+
   if (totalBalance < points) {
-    throw new Error('Not enough points in your balance');
+    throw new Error(`You are trying to spend ${points} points but you have only ${totalBalance} points.`)
   }
 
   while (points > 0) {
@@ -36,11 +36,11 @@ const spendPoints = (points, timestamp=Date.now(), customTransactions) => {
   return costs
 }
 
-function getTotalBalance(customBalances) {
-  balances = customBalances ?? balances
+//TODO: have it compute total balance if we're testing for specific timestamp
+function getTotalBalance(transactions) {
   let totalBalance = 0;
-  for (let payer in balances) {
-    totalBalance += balances[payer]
+  for (let transaction of transactions?._heap) {
+    totalBalance += transaction.points
   }
 
   return totalBalance;
