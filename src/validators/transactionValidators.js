@@ -1,5 +1,5 @@
 const isValidTransactionData = (body) => {
-  return isValidTransaction(body) || isValidTransactionArray(body)
+  return (Array.isArray(body)) ? isValidTransactionArray(body) : isValidTransaction(body)
 }
 
 const isValidTransaction = (transaction) => {
