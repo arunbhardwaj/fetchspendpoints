@@ -3,12 +3,14 @@ const { balances, transactions } = require('../models');
 const addTransactions = (body, cb) => {
   if (Array.isArray(body)) {
     for (let transaction of body) {
-      balances[transaction.payer] = (balances[transaction.payer] ?? 0) + transaction.points;
-      transactions.insert(transaction);
+      const { payer, points, timestamp } = transaction
+      balances[payer] = (balances[payer] ?? 0) + points;
+      transactions.insert({ payer, points, timestamp });
     }
   } else {
-    balances[body.payer] = (balances[body.payer] ?? 0) + body.points;
-    transactions.insert(body);
+    const { payer, points, timestamp } = body
+    balances[payer] = (balances[payer] ?? 0) + points;
+    transactions.insert({ payer, points, timestamp });
   }
 
   console.log(
