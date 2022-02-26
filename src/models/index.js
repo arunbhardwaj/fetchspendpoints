@@ -1,10 +1,10 @@
 const BinaryHeap = require('../helpers/binaryHeap')
 
-const balances = {}
+let balances = {}
 
 // TODO: checking of time differences should be done reliably
 // irrespective of daylight savings => standardize your time zone
-const transactions = new BinaryHeap((b, a) => {
+let transactions = new BinaryHeap((b, a) => {
   let aDate = new Date(a.timestamp)
   let bDate = new Date(b.timestamp)
   if (aDate > bDate) {

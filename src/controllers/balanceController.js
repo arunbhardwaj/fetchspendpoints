@@ -1,10 +1,16 @@
-const { balances, transactions: globalTransactions } = require('../models')
+let { balances, transactions } = require('../models')
 const { isValidTransactionBeforeTimestamp } = require('../validators/transactionValidators')
 
-const spendPoints = (points, timestamp=Date.now(), transactions=globalTransactions) => {
+const spendPoints = (points, timestamp=Date.now(), customTransactions) => {
   // we should check if points are greater than total balance
   // but I'm going to assume we have the points for simplicity
+  transactions = customTransactions ?? transactions;
   let costs = {}
+  let totalBalance = getTotalBalance();
+  if (totalBalance < points) {
+    throw new Error('Not enough points in your balance');
+  }
+
   while (points > 0) {
     console.log('============================\n', `trying to spend ${points}\n`, transactions._heap, '\n', 'Current Top Transation:', transactions._heap[0], '\n============================\n')
     let transaction = (transactions._heap[0].points <= points) ? transactions.removeRoot() : transactions._heap[0]
@@ -30,6 +36,17 @@ const spendPoints = (points, timestamp=Date.now(), transactions=globalTransactio
   return costs
 }
 
+function getTotalBalance(customBalances) {
+  balances = customBalances ?? balances
+  let totalBalance = 0;
+  for (let payer in balances) {
+    totalBalance += balances[payer]
+  }
+
+  return totalBalance;
+}
+
 module.exports = {
-  spendPoints
+  spendPoints,
+  getTotalBalance
 }
