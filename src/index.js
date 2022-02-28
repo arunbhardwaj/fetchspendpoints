@@ -1,9 +1,7 @@
 const express = require('express');
-const morgan = require('morgan');
 const { balanceRouter, transactionRouter } = require('./routes');
 
 const app = express();
-app.use(morgan('dev'));
 app.use(express.json());
 app.use('/api/balance', (req, res, next) => {
   if (req.method === 'PUT') {
