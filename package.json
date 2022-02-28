@@ -1,7 +1,7 @@
 {
   "name": "fetchspendpoints",
   "version": "1.0.0",
-  "description": "",
+  "description": "Earn and redeem your fetch points",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src",
@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "",
+  "author": "@arunbhardwaj",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3"
