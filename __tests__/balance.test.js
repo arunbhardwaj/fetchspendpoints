@@ -27,7 +27,7 @@ describe('spendPoints function tests', () => {
   test('it should output blank object if no spending', () => {
     expect(mockBalances).toEqual({ UNILEVER: 200, DANNON: 1100, 'MILLER COORS': 10000 });
     let result = spendPoints(0, '2020-11-01T14:00:00Z');
-    expect(result).toEqual({});
+    expect(result).toEqual([]);
   });
 
   test('it should output correct object after spending', () => {
@@ -36,22 +36,22 @@ describe('spendPoints function tests', () => {
     try {
       result = spendPoints(5000, Date.now(), mockTransactions);
     } catch (err) {}
-    expect(result).toEqual({ DANNON: -100, UNILEVER: -200, 'MILLER COORS': -4700 });
+    expect(result).toEqual([{ payer: "DANNON", points: -100 }, { payer: "UNILEVER", points: -200 }, {payer: 'MILLER COORS', points: -4700 }]);
   });
 
   test('it should spend points in a row correctly', () => {
     expect(mockBalances).toEqual({ UNILEVER: 200, DANNON: 1100, 'MILLER COORS': 10000 });
     let result = spendPoints(1000, Date.now(), mockTransactions);
-    expect(result).toEqual({ DANNON: -100, UNILEVER: -200, 'MILLER COORS': -700 });
+    expect(result).toEqual([{ payer: "DANNON", points: -100}, {payer: "UNILEVER", points: -200},{ payer: 'MILLER COORS', points: -700 }]);
     result = spendPoints(1000, Date.now(), mockTransactions);
-    expect(result).toEqual({ 'MILLER COORS': -1000 });
+    expect(result).toEqual([{ payer: 'MILLER COORS', points: -1000 }]);
     result = spendPoints(8400, Date.now(), mockTransactions);
-    expect(result).toEqual({ 'MILLER COORS': -8300, DANNON: -100 });
+    expect(result).toEqual([{ payer: 'MILLER COORS', points: -8300}, {payer: "DANNON", points: -100 }]);
   });
 
   test('it should spend points from a different date correctly', () => {
     let result = spendPoints(1000, '2020-11-01T13:00:00Z', mockTransactions);
-    expect(result).toEqual({ DANNON: -100, UNILEVER: -200 });
+    expect(result).toEqual([{ payer: "DANNON", points: -100 },{ payer: "UNILEVER", points : -200 }]);
   });
 });
 
