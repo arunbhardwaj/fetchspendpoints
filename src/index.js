@@ -6,7 +6,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use('/api/balance', (req, res, next) => {
-  if (req.method === 'POST') {
+  if (req.method === 'PUT') {
     req.body.timestamp = req.body.timestamp ?? Date.now()
   }
   next()

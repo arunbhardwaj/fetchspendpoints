@@ -13,7 +13,7 @@ test('it should update user balance when transactions are entered', () => {
 
 })
 
-describe('POST /balance', () => {
+describe('PUT /balance', () => {
   it('should always have a timestamp on request body', () => {
 
   })

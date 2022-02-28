@@ -7,12 +7,10 @@ router.get('/', (req, res) => {
 })
 
 // Spending
-router.post('/', (req, res) => {
+router.put('/', (req, res) => {
   const { points, timestamp } = req.body
-  console.log(`Trying to spend ${points} before time ${timestamp}.`)
-  let result = null
   try {
-    result = spendPoints(points, timestamp)
+    let result = spendPoints(points, timestamp)
     res.json(result)
   } catch (err) {
     res.status(400).json(err.message)

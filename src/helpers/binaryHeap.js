@@ -2,10 +2,11 @@
  * Simple Binary Heap implemented using arrays to store
  * values and customizable for both min and max heaps via
  * custom comparison function that takes two values and
- * compares them, returning -1 if a<b; 0 if a=b; 1 if a>b
+ * compares them, returning
+ *  -1 if a<b;
+ *   0 if a=b;
+ *   1 if a>b;
  *
- * E.g. if comparison function (i, j) => i <= j ==> min heap.
- *      if comparison function (i, j) => i >= j ==> max heap.
  * @param {function} comparisonSort optional custom comparison sort
  */
 function BinaryHeap(comparisonSort) {

@@ -12,7 +12,6 @@ const spendPoints = (points, timestamp=Date.now(), customTransactions) => {
   }
 
   while (points > 0) {
-    console.log('============================\n', `trying to spend ${points}\n`, transactions._heap, '\n', 'Current Top Transation:', transactions._heap[0], '\n============================\n')
     let transaction = (transactions._heap[0].points <= points) ? transactions.removeRoot() : transactions._heap[0]
     if (!isValidTransactionBeforeTimestamp(transaction, timestamp)) {
       break;
@@ -30,8 +29,6 @@ const spendPoints = (points, timestamp=Date.now(), customTransactions) => {
   for (let payer in costs) {
     balances[payer] += costs[payer]
   }
-
-  console.log("Points left over:", points)
 
   return costs
 }
