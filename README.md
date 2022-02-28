@@ -23,15 +23,16 @@ Spend your ToysRUs points here.
 
 ## How To Install and Run
 
-### Download
+### Download files
 1. Clone the directory. Alternatively you can download the files and extract to directory of your choosing.
 2. `cd` into the directory
 
 ### Installation
-1. Install packages by running `npm install` in the command line.
+1. You need to have node and npm installed. [node](https://nodejs.org/en/download/)
+2. Install packages by running `npm install` in the command line.
 
 ### Running the server
-1. Run `npm run start` to start the app on `http://localhost:3000/` by default.
+1. Run `npm run start` to start the app on `http://localhost:3000/`. (`npm run start` is using node to run the src/index.js file, you can do so manually by running `node path/to/src/index.js`)
 2. If you'd like to specify your own port, you can run `PORT={portOfYourChoosing} npm run start`
 3. You can now send HTTP requests to that endpoint and observe the responses.
 4. Press `Ctrl + C` or `Cmd + C` to exit the running server process.
