@@ -34,6 +34,7 @@ Spend your ToysRUs points here.
 1. Run `npm run start` to start the app on `http://localhost:3000/` by default.
 2. If you'd like to specify your own port, you can run `PORT={portOfYourChoosing} npm run start`
 3. You can now send HTTP requests to that endpoint and observe the responses.
+4. Press `Ctrl + C` or `Cmd + C` to exit the running server process.
 
 <br/>
 <br/>
