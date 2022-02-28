@@ -13,13 +13,6 @@ const addTransactions = (body, cb) => {
     transactions.insert({ payer, points, timestamp });
   }
 
-  console.log(
-    '============================',
-    transactions._heap,
-    '============================\n',
-    { balances }
-  );
-
   cb();
 };
 
