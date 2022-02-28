@@ -1,9 +1,25 @@
 # fetchspendpoints
 Spend your ToysRUs points here.
-<br/>
-<br/>
-## About the program
 
+### Design decisions
+
+- Used a binary heap instead of standard array for storing transactions as it would yield a better time complexity for any subsequent points expenditures + transaction additions
+- Added optional timestamp field to the points expenditure `PUT` endpoint `/api/balance`. This was to purely make testing easier as it's quicker and less error-prone to test by altering a single timestamp than by altering your entire dataset.
+- Made the endpoint for points expenditure the `PUT` to `/api/balance`. In following the RESTful API's noun convention, I couldn't decide on a "good" noun for points expenditure. It made more sense to me to envision our points expenditure as *updating* our user's balance with our request.
+
+### Next steps
+
+- Add and use environment variables for testing purposes and to separate my "production" code from development/testing e.g. spendPoints function in `balanceController.js`
+- Implement integration tests for endpoints
+- "Permanently" store the total balance (available points) of a user
+- Validate the data sent to points endpoint and perhaps have it use the total balance to validate
+- Use a well-tested library (collectionsjs?) for binary heap instead of my own
+- Use UTC timezone (perhaps through environment variable) as there may be weird potential interactions that break functionality around Nov 6 and Mar 13 OR
+- Use a date library (date-fns?) that accounts for daylight savings and different timezones
+
+
+<br/>
+<br/>
 
 ## How To Install and Run
 
@@ -52,8 +68,8 @@ RESPONSE
 
 <br/>
 
-## POST `/api/balance`
-Spends points from your balance
+## PUT `/api/balance`
+Spends points from your balance and updates your balance.
 
 Parameter | Type | Description
 -------|------|------------
