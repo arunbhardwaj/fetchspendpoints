@@ -113,13 +113,13 @@ EXAMPLE REQUESTS
   { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" },
   { "payer": "MILLER COORS", "points": 10000, "timestamp": "2020-11-01T14:00:00Z" },
   { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" },
-  { "payer": "TOYS \'R\' US", "points": 9000, "timestamp": "2017-09-18T04:00:00.000Z" }
+  { "payer": "TOYS 'R' US", "points": 9000, "timestamp": "2017-09-18T04:00:00.000Z" }
 ]
 ```
 
 > Transaction JSON Object
 ```json
-{ "payer": "TOYS \'R\' US", "points": 9000, "timestamp": "2017-09-18T04:00:00.000Z" }
+{ "payer": "TOYS 'R' US", "points": 9000, "timestamp": "2017-09-18T04:00:00.000Z" }
 ```
 
 Parameter | Type | Description
